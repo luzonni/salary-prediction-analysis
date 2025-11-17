@@ -1,6 +1,11 @@
+import pandas as pd
 from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.preprocessing import StandardScaler
 import numpy as np
+
+df = pd.read_csv("data/salary.csv")
 
 # Criar target numérico
 df_reg = df.copy()
@@ -37,3 +42,4 @@ print("MAE:", mae)
 print("MSE:", mse)
 print("RMSE:", rmse)
 print("R²:", r2)
+

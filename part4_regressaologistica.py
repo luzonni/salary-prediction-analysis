@@ -4,6 +4,14 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
+__all__ = [
+    "X_train", "X_test",
+    "y_train", "y_test",
+    "feature_names"
+]
+
+df = pd.read_csv("data/salary.csv")
+
 # Criar target numérico igual à Parte A
 df_log = df.copy()
 df_log["salary_num"] = df_log["salary"].apply(lambda x: 1 if ">50K" in x else 0)
@@ -14,6 +22,7 @@ df_log_encoded = pd.get_dummies(df_log.drop(columns=["salary"]), drop_first=True
 # Separação em X e y
 X = df_log_encoded.drop("salary_num", axis=1)
 y = df_log_encoded["salary_num"]
+feature_names = X.columns.tolist()
 
 # Normalização
 scaler = StandardScaler()
